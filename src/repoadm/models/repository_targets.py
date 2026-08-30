@@ -5,7 +5,6 @@ from enum import Enum
 
 from sqlalchemy import (
     Boolean,
-    CheckConstraint,
     DateTime,
     Integer,
     String,
