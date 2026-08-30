@@ -1,2 +1,2 @@
-class SyncJobs():
+class SyncJob():
     pass
