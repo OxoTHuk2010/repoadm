@@ -1,0 +1,2 @@
+class RepositoryBundlesMembers():
+    pass
