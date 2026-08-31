@@ -22,7 +22,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from .repositories import Repository
     from .sync_jobs import SyncJob
-    from .repo_bundles_members import RepositoryBundlesMembers
+    from .repo_bundles_members import RepositoryBundlesMember
 
 class SourceType(str, Enum):
     BASEURL = "baseurl"
@@ -145,7 +145,7 @@ class RepositoryTarget(Base):
         back_populates="repository_target",
     )
 
-    bundle_memberships: Mapped[list["RepositoryBundlesMembers"]] = relationship(
+    bundle_memberships: Mapped[list["RepositoryBundlesMember"]] = relationship(
         back_populates="repository_target",
     )
 

@@ -69,7 +69,7 @@ class Repository(Base):
     enabled: Mapped[bool] = mapped_column(
         Boolean,
         nullable=False,
-        dafault=True,
+        default=True,
     )
 
     created_at: Mapped[datetime] = mapped_column(
@@ -89,7 +89,7 @@ class Repository(Base):
         back_populates="repository",
     )
 
-    __mapper_args__ = (
+    __table_args__ = (
         CheckConstraint(
             """
             (

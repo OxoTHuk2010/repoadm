@@ -219,3 +219,7 @@ __marimo__/
 
 .agent/
 AGENTS.MD
+
+*.db
+*.db-shm
+*.db-wal
