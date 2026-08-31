@@ -145,7 +145,7 @@ class RepositoryTarget(Base):
         back_populates="repository_target",
     )
 
-    bundle_memberships: Mapped[list["RepositoryBundlesMember"]] = relationship(
+    bundle_membership: Mapped[list["RepositoryBundlesMember"]] = relationship(
         back_populates="repository_target",
     )
 
