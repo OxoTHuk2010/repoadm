@@ -1,6 +1,7 @@
+from collections.abc import Generator
 from sqlalchemy import create_engine, event
 from sqlalchemy.engine import Engine
-from sqlalchemy.orm import DeclarativeBase, sessionmaker
+from sqlalchemy.orm import DeclarativeBase, Session, sessionmaker
 
 from repoadm.config import settings
 
@@ -41,3 +42,11 @@ def init_db() -> None:
     import repoadm.models #noqa: F401
 
     Base.metadata.create_all(bind=engine)
+
+def get_db() -> Generator[Session, None, None]:
+    db = SessionLocal()
+
+    try:
+        yield db
+    finally:
+        db.close()
