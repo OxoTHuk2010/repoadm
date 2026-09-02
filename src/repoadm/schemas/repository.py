@@ -6,12 +6,15 @@ from pydantic import (
     model_validator,
 )
 
+from datetime import datetime
+
 from repoadm.models.repositories import SyncMode
-from repoadm.models.repository_targets import SourceType
+from repoadm.utils import validate_slug
 
-from repoadm.utils import validate_slug, validate_storage_path, validate_source_url, validate_repoid
+from .repository_target import RepositoryTargetCreate, RepositoryTargetResonce
 
-class RepositoryTargetCreate(BaseModel):
+
+class RepositoryCreate(BaseModel):
     name: str = Field(
         min_length=1,
         max_length=255,
@@ -19,55 +22,107 @@ class RepositoryTargetCreate(BaseModel):
 
     slug: str
 
-    source_type: SourceType
+    sync_mode: SyncMode
 
-    source_url: str
-
-    releasever: str | None = Field(
-        default="x86_64",
-        min_length=1,
-        max_length=50,
+    schedule_cron: str | None = Field(
+        default=None,
+        max_length=100,
     )
-
-    include_noarch: bool = True
-
-    storage_path: str
-
-    local_repoid: str
-
-    local_name: str = Field(
-        min_length=1,
-        max_length=255,
-    )
-
-    source_sslverify: bool = True
-
-    local_gpgcheck: bool = True
-
-    local_gpgkey: str | None = None
 
     enabled: bool = True
+
+    targets: list[RepositoryTargetCreate] = Field(
+        max_length=1,
+    )
 
     @field_validator("slug")
     @classmethod
     def check_slug(cls, value: str) -> str:
         return validate_slug(value)
 
-    @field_validator("storage_path")
+    @field_validator("schedule_cron")
     @classmethod
-    def check_storage_path(cls, value: str) -> str:
-        return validate_storage_path(value)
+    def normalize_cron(
+        cls,
+        value: str | None,
+    ) -> str | None:
+        if value is None:
+            return None
 
-    @field_validator("source_url")
+        value = value.strip()
+
+        if not value:
+            raise ValueError(
+                "schedule_cron не может быть пустым"
+            )
+
+        return value
+
+    @model_validator(mode='after')
+    def check_schedule(self):
+        if self.sync_mode == SyncMode.SCHEDULED:
+            if self.schedule_cron is None:
+                raise ValueError(
+                    "SCHEDULED репозиторий должен иметь заполненный schedule_cron"
+                )
+        else:
+            if self.schedule_cron is not None:
+                raise ValueError(
+                    "schedule_cron необходим к заполнению"
+                    "если репозиторий SCHEDULED"
+                )
+
+        return self
+
+class RepositoryUpdate(BaseModel):
+    name: str | None = Field(
+        default = None,
+        min_length=1,
+        max_length=255,
+    )
+
+    sync_mode: SyncMode | None = None
+
+    schedule_cron: str | None = Field(
+        default=None,
+        max_length=100,
+    )
+
+    enabled: bool | None = None
+
+    @field_validator("schedule_cron")
     @classmethod
-    def check_source_url(cls, value: str) -> str:
-        return validate_source_url(value)
+    def normalize_cron(
+        cls,
+        value: str | None,
+    ) -> str | None:
+        if value is None:
+            return None
 
-    @field_validator("local_repoid")
-    @classmethod
-    def check_repoid(cls, value: str) -> str:
-        return validate_repoid(value)
+        value = value.strip()
 
+        if not value:
+            raise ValueError(
+                "schedule_cron не может быть пустым"
+            )
 
-class RepositoryCreate(BaseModel):
-    pass
+        return value
+
+class RepositoryResponse(BaseModel):
+    model_config = ConfigDict(
+        from_attributes=True,
+    )
+
+    id: int
+
+    name: str
+    slug: str
+
+    sync_mode: SyncMode
+
+    schedule_cron: str | None
+    next_run_at: datetime | None
+
+    enabled: bool
+
+    targets: list[RepositoryTargetResonce]

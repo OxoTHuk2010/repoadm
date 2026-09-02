@@ -29,7 +29,7 @@ class SyncMode(str, Enum):
 class Repository(Base):
     __tablename__ = "repositories"
 
-    id: Mapped[str] = mapped_column(
+    id: Mapped[int] = mapped_column(
         Integer,
         primary_key=True,
     )
