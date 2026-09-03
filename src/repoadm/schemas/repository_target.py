@@ -84,7 +84,7 @@ class RepositoryTargetResonce(BaseModel):
     name: str
     slug: str
 
-    source_tupe: SourceType
+    source_type: SourceType
     source_url: str
 
     releasever: str | None
@@ -99,6 +99,6 @@ class RepositoryTargetResonce(BaseModel):
     source_sslverify: bool
 
     local_gpgcheck: bool
-    localgpgkey: str | None
+    local_gpgkey: str | None
 
     enabled: bool

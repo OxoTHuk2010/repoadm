@@ -32,7 +32,7 @@ class RepositoryCreate(BaseModel):
     enabled: bool = True
 
     targets: list[RepositoryTargetCreate] = Field(
-        max_length=1,
+        min_length=1,
     )
 
     @field_validator("slug")
