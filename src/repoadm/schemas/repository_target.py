@@ -23,7 +23,7 @@ class RepositoryTargetCreate(BaseModel):
     source_url: str
 
     releasever: str | None = Field(
-        default="x86_64",
+        default=None,
         min_length=1,
         max_length=50,
     )
