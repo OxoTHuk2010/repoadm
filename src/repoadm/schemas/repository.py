@@ -11,7 +11,7 @@ from datetime import datetime
 from repoadm.models.repositories import SyncMode
 from repoadm.utils import validate_slug
 
-from .repository_target import RepositoryTargetCreate, RepositoryTargetResonce
+from .repository_target import RepositoryTargetCreate, RepositoryTargetResponse
 
 
 class RepositoryCreate(BaseModel):
@@ -125,4 +125,4 @@ class RepositoryResponse(BaseModel):
 
     enabled: bool
 
-    targets: list[RepositoryTargetResonce]
+    targets: list[RepositoryTargetResponse]

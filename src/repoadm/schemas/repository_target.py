@@ -73,7 +73,7 @@ class RepositoryTargetCreate(BaseModel):
     def check_repoid(cls, value: str) -> str:
         return validate_repoid(value)
 
-class RepositoryTargetResonce(BaseModel):
+class RepositoryTargetResponse(BaseModel):
     model_config = ConfigDict(
         from_attributes=True,
     )

@@ -4,6 +4,6 @@ from .repository import (
     RepositoryUpdate,
 )
 from .repository_target import (
-    RepositoryTargetResonce,
+    RepositoryTargetResponse,
     RepositoryTargetCreate,
 )

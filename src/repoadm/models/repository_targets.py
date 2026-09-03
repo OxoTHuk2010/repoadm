@@ -101,7 +101,7 @@ class RepositoryTarget(Base):
         nullable=False,
     )
 
-    source_sslverify: Mapped[str] = mapped_column(
+    source_sslverify: Mapped[bool] = mapped_column(
         Boolean,
         nullable=False,
         default=True,

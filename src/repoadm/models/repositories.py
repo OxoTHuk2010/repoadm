@@ -60,7 +60,7 @@ class Repository(Base):
         nullable=True,
     )
 
-    next_run_at: Mapped[str|None] = mapped_column(
+    next_run_at: Mapped[datetime|None] = mapped_column(
         DateTime(),
         nullable=True,
         index=True,
