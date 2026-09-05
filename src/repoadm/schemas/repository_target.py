@@ -102,3 +102,74 @@ class RepositoryTargetResponse(BaseModel):
     local_gpgkey: str | None
 
     enabled: bool
+
+class RepositoryTargetUpdate(BaseModel):
+    name: str | None = Field(
+        default=None,
+        min_length=1,
+        max_length=255,
+    )
+
+    source_type: SourceType | None = None
+    source_url: str | None = None
+
+    releasever: str | None = Field(
+        default=None,
+        min_length=1,
+        max_length=50,
+    )
+    basearch: str | None = Field(
+        default=None,
+        min_length=1,
+        max_length=50,
+    )
+    include_noarch: bool | None = None
+
+    storage_path: str | None = None
+
+    local_repoid:str | None = None
+    local_name: str | None = Field(
+        default=None,
+        min_length=1,
+        max_length=255,
+    )
+
+    source_sslverify: bool | None = None
+
+    local_gpgcheck: bool | None = None
+    local_gpgkey: str | None = None
+
+    enabled: bool | None = None
+
+    @field_validator("source_url")
+    @classmethod
+    def check_source_url(
+        cls,
+        value: str | None,
+    ) -> str | None:
+        if value is None:
+            return None
+
+        return validate_source_url(value)
+
+    @field_validator("storage_path")
+    @classmethod
+    def check_storage_path(
+        cls,
+        value: str | None,
+    ) -> str | None:
+        if value is None:
+            return None
+
+        return validate_storage_path(value)
+
+    @field_validator("local_repoid")
+    @classmethod
+    def check_local_repoid(
+        cls,
+        value: str | None,
+    ) -> str | None:
+        if value is None:
+            return None
+
+        return validate_repoid(value)
