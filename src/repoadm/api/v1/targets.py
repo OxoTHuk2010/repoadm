@@ -41,7 +41,7 @@ def create_target_endpoint(
             repository_id,
             data,
         )
-    except RepositoryTargetNotFoundError as e:
+    except RepositoryNotFoundError as e:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail={
