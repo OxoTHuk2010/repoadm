@@ -8,3 +8,13 @@ from .repository_target import (
     RepositoryTargetCreate,
     RepositoryTargetUpdate,
 )
+from .repository_bundle import (
+    RepositoryBundleCreate,
+    RepositoryBundleUpdate,
+    RepositoryBundleResponse,
+)
+from .repository_bundle_member import (
+    RepositoryBundleMemberCreate,
+    RepositoryBundleMemberResponse,
+    RepositoryBundleMemberUpdate,
+)
