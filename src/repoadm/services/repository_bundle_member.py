@@ -1,7 +1,5 @@
-from sqlalchemy import select
 from sqlalchemy.orm import (
     Session,
-    selectinload,
 )
 from sqlalchemy.exc import IntegrityError
 
