@@ -14,15 +14,16 @@ from repoadm.schemas import (
     RepositoryUpdate,
 )
 from repoadm.services import (
-    RepositoryConfigurationError,
-    RepositoryConflictError,
-    RepositoryNotFoundError,
     create_repository,
     get_repository,
     list_repositories,
     update_repository,
 )
-
+from repoadm.exceptions import (
+    RepositoryConfigurationError,
+    RepositoryConflictError,
+    RepositoryNotFoundError,
+)
 
 router = APIRouter(
     prefix="/api/v1/repositories",

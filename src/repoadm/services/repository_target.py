@@ -12,14 +12,11 @@ from repoadm.schemas import (
     RepositoryTargetUpdate,
 )
 
-from .repository import RepositoryNotFoundError
-
-class RepositoryTargetNotFoundError(Exception):
-    pass
-
-class RepositoryTargetConflictError(Exception):
-    pass
-
+from repoadm.exceptions import (
+    RepositoryNotFoundError,
+    RepositoryTargetNotFoundError,
+    RepositoryTargetConflictError,
+)
 
 
 def get_repository_target(

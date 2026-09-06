@@ -13,12 +13,14 @@ from repoadm.schemas import (
     RepositoryTargetResponse,
 )
 from repoadm.services import (
-    RepositoryNotFoundError,
-    RepositoryTargetConflictError,
-    RepositoryTargetNotFoundError,
     create_repository_target,
     get_repository_target,
     update_repository_target,
+)
+from repoadm.exceptions import (
+    RepositoryNotFoundError,
+    RepositoryTargetNotFoundError,
+    RepositoryTargetConflictError,
 )
 
 router = APIRouter(

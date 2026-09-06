@@ -13,14 +13,11 @@ from repoadm.schemas import (
     RepositoryUpdate,
 )
 
-class RepositoryNotFoundError(Exception):
-    pass
-
-class RepositoryConflictError(Exception):
-    pass
-
-class RepositoryConfigurationError(Exception):
-    pass
+from repoadm.exceptions import (
+    RepositoryNotFoundError,
+    RepositoryConflictError,
+    RepositoryConfigurationError,
+)
 
 def get_repository(
     db: Session,
