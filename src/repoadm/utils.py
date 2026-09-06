@@ -41,6 +41,10 @@ PATH_SEGMENT_RE = re.compile(
     r"^[A-Za-z0-9._+-]+$"
 )
 
+REPOS_FILENAME_RE = re.compile(
+    r"^[A-Za-z0-9][A-Za-z0-9._+-]{0,250}\.repo$"
+)
+
 def validate_slug(value: str) -> str:
     if not SLUG_RE.fullmatch(value):
         raise ValueError(
@@ -113,4 +117,14 @@ def validate_repoid(value: str) -> str:
         raise ValueError(
             "Неверный локальный id репозитория"
         )
+    return value
+
+def validate_repo_filename(value: str) -> str:
+    value = value.strip()
+
+    if not REPOS_FILENAME_RE.fullmatch(value):
+        raise ValueError(
+            "filename must be a safe .repo filename"
+        )
+
     return value
