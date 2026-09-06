@@ -32,7 +32,7 @@ class RepositoryBundle(Base):
         nullable=False,
     )
 
-    fullname: Mapped[str] = mapped_column(
+    filename: Mapped[str] = mapped_column(
         String(255),
         nullable=False,
         unique=True,
@@ -59,4 +59,8 @@ class RepositoryBundle(Base):
 
     members: Mapped[list["RepositoryBundlesMember"]] = relationship(
         back_populates="bundle",
+        order_by=(
+            "RepositoryBundlesMember.sort_order, "
+            "RepositoryBundlesMember.repository_target_id"
+        ),
     )
