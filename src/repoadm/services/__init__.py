@@ -15,3 +15,8 @@ from .repository_bundle import (
     create_repository_bundle,
     update_repository_bundle,
 )
+from .repository_bundle_member import (
+    add_target_to_bundle,
+    update_bundle_member,
+    remove_target_from_bundle,
+)
