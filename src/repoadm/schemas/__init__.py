@@ -18,3 +18,8 @@ from .repository_bundle_member import (
     RepositoryBundleMemberResponse,
     RepositoryBundleMemberUpdate,
 )
+from .sync_job import (
+    SyncJobResponse,
+    QueueStatsResponse,
+    RepositorySyncResponse,
+)

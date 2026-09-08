@@ -20,3 +20,11 @@ from .repository_bundle_member import (
     update_bundle_member,
     remove_target_from_bundle,
 )
+from .sync_queue import (
+    get_active_job_for_target,
+    enqueue_target_sync,
+    enqueu_repository_sync,
+    get_sync_job,
+    list_sync_jobs,
+    get_queue_stats,
+)

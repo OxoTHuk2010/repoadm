@@ -21,3 +21,18 @@ class RepositoryBundleConflictError(Exception):
 
 class RepositoryBundleMemberNotFoundError(Exception):
     pass
+
+class SyncAlreadyPendingError(Exception):
+    pass
+
+class RepositoryDisabledError(Exception):
+    pass
+
+class RepositoryTargetDisabledError(Exception):
+    pass
+
+class RepositoryHasNoEnabledTargetsError(Exception):
+    pass
+
+class SyncJobNotFoundError(Exception):
+    pass
