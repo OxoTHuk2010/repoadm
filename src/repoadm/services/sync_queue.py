@@ -207,7 +207,7 @@ def list_sync_jobs(
     db:Session,
     status: JobStatus | None = None,
     target_id: int | None = None,
-    batch_id: int | None = None,
+    batch_id: str | None = None,
     limit: int = 100,
 ) -> list[SyncJob]:
 

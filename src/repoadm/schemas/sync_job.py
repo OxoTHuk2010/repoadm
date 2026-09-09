@@ -31,9 +31,9 @@ class SyncJobResponse(BaseModel):
 class RepositorySyncResponse(BaseModel):
     batch_id: str
 
-    created_at: list[SyncJobResponse]
+    created: list[SyncJobResponse]
 
-    skipped_trigger_id: list[int]
+    skipped_target_ids: list[int]
 
 
 class QueueStatsResponse(BaseModel):
