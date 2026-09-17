@@ -28,3 +28,9 @@ from .sync_queue import (
     list_sync_jobs,
     get_queue_stats,
 )
+from .sync_worker import (
+    claim_next_job,
+    complete_job_successfully,
+    complete_job_with_failure,
+    recover_interrupted_jobs,
+)

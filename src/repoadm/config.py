@@ -23,7 +23,7 @@ class Settings(BaseSettings):
 
     max_parallel_jobs: int = Field(default=1, description="Количество потоков по обработке задач")
 
-    poll_interval: int = Field(default=3600, description="Интервал между опросами репозиториев на наличие обновлений")
+    poll_interval: int = Field(default=3, description="Интервал между опросами репозиториев на наличие обновлений")
 
     model_config = SettingsConfigDict(
         env_file=".env",
