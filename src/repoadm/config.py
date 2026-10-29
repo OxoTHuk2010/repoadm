@@ -25,6 +25,12 @@ class Settings(BaseSettings):
 
     poll_interval: int = Field(default=3, description="Интервал между опросами репозиториев на наличие обновлений")
 
+    dnf_binary: str = Field(default="/usr/bin/dnf")
+
+    dnf_cache_root: str = Field(default="./var/dnf-cache")
+
+    dnf_persist_root: str = Field(default="./var/dnf-state")
+
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",
